@@ -1,37 +1,62 @@
-// create a variable that recognizes choices for rock paper and scissors
+const choices = ['rock', 'paper', 'scissors']
 
-const rps = ['Rock', 'Paper', 'Scissors']
-
-// create a function called computerPlay that randomly returns an item in the array
-
-function computerPlay() {
-    return rps[Math.floor(Math.random() * rps.length)]
-}
-
-// writing a function that plays a single round of RPS
-
-
-function currentRound(playerSelection, computerSelection) {
-    if(playerSelection === 'Rock' && computerSelection === 'Paper') {
-        return "You lose! Paper beats Rock"
-    } else if(playerSelection === 'Paper' && computerSelection === 'Scissors') {
-        return "You lose! Scissors beats Paper"
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Rock') {
-        return "You lose! Rock beats Scissors"
-    } else if(playerSelection === 'Paper' && computerSelection === 'Rock') {
-        return "You win! Paper beats Rock"
-    } else if(playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        return "You Win! Rock beats Scissors"
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        return "You Win! Scissors beats Paper"
-    } else if(playerSelection === computerSelection) {
-        return "Its a Draw! Go Again"
+function game() {
+    //play the game
+    // play 5 rounds
+    for(let i = 0; i <= 5; i++){
+        playRound();
     }
-      else {
-          return "Unknown Error"
-      }
 }
 
-const playerSelection = "Rock";
-const computerSelection = computerPlay();
-console.log(currentRound(playerSelection, computerSelection));
+function playRound() {
+    //playRound takes two parameters
+    const playerSelection = playerChoice();
+    const computerSelection = computerChoice();
+    const winner = checkWinner(playerSelection, computerSelection)
+    console.log(winner);
+}
+
+function playerChoice () {
+    //get input from player
+    let input = prompt('Rock, Paper or Scissors');
+    while(input == null) {
+        input = prompt('Rock, Paper, or Scissors');
+    }
+    input = input.toLowerCase();
+    let check = validateInput(input);
+    if(check == true){
+    }
+    return input;
+}
+
+
+function computerChoice() {
+    //get random choice for  computer
+    return choices [Math.floor(Math.random() * choices.length)]
+}
+
+function validateInput(choice){
+    if(choices.includes(choice)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkWinner(choiceP, choiceC){
+    if(choiceP === choiceC){
+        return 'Tie';
+    } else if(choiceP === 'rock' && choiceC === 'scissors'){
+        return 'Player'
+    } else if(choiceP === 'paper' && choiceC === 'rock'){
+        return 'Player'
+    } else if(choiceP === 'scissors' && choiceC === 'paper'){
+        return 'Player'
+    } else {
+        return 'Computer'
+    }
+}
+
+game();
+
+
