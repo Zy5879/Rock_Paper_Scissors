@@ -4,18 +4,20 @@ function game() {
     //play the game
     // play 5 rounds
     for(let i = 1; i <= 5; i++){
-        playRound();
+        //in game function playRound is increasing by 1 each time the game is played
+        playRound(i);
 
     }
     logWins();
 }
-
-function playRound() {
+//playRounds parameter is round. console.log round will run into this parameter
+function playRound(round) {
     //playRound takes two parameters
     const playerSelection = playerChoice();
     const computerSelection = computerChoice();
     const winner = checkWinner(playerSelection, computerSelection)
     winners.push(winner);
+    logRound(playerSelection, computerSelection, winner, round)
 }
 
 function playerChoice () {
@@ -84,5 +86,13 @@ function logWins() {
 
 }
 //show who won each round
+function logRound(playerChoice, computerChoice, winner, round) {
+    //Round: will display the Round while the parameter round is being ran through the function playRound
+console.log('Round:',round);
+console.log('Player Choose:' ,playerChoice);
+console.log('Computer Choose:',computerChoice);
+console.log(winner, 'Won the Round');
+}
+
 
 game();
