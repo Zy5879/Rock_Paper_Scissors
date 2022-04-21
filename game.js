@@ -24,12 +24,23 @@ function playerChoice () {
     while(input == null) {
         input = prompt('Rock, Paper, or Scissors');
     }
+    //makes sure player input is being correctly read from choices
     input = input.toLowerCase();
     let check = validateInput(input);
-    if(check == true){
+    while(check == false) {
+      input = prompt('Remember spelling matters!');
+
+        while(input == null) {
+            input = prompt('Rock, Paper, or Scissors');
     }
-    return input;
+
+        input = input.toLowerCase();
+        check = validateInput(input)
 }
+
+return input;
+    }
+
 
 
 function computerChoice() {
@@ -37,6 +48,7 @@ function computerChoice() {
     return choices [Math.floor(Math.random() * choices.length)]
 }
 
+//make sure that it successfully returns choices variable. If it does not return anything in the choice variable, return nothing
 function validateInput(choice){
     if(choices.includes(choice)){
         return true;
@@ -44,7 +56,7 @@ function validateInput(choice){
         return false;
     }
 }
-
+//logs the possible outcomes of game
 function checkWinner(choiceP, choiceC){
     if(choiceP === choiceC){
         return 'Tie';
@@ -59,6 +71,7 @@ function checkWinner(choiceP, choiceC){
     }
 }
 
+// logging how many times player computer or tie occured
 function logWins() {
     let playerWins = winners.filter(item => item == 'Player').length;
     let computerWins = winners.filter(item => item == 'Computer' ).length;
@@ -70,7 +83,6 @@ function logWins() {
 
 
 }
+//show who won each round
 
 game();
-
-
