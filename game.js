@@ -30,13 +30,39 @@ function playRound(playerChoice) {
     winners.push(winner);
     countWins();
     displayRound(playerChoice, computerChoice, winner);
+    wins = checkWins();
+    if(wins == 5){
+        //display end results
+        //change the text to display winner
+        displayEnd()
+    }
+}
+
+function displayEnd() {
+    let pWins = winners.filter(item => item == 'Player').length;
+    if(pWins == 5){
+        document.querySelector('.winner').textContent = 'Congratulations You Win!';
+    } else {
+        document.querySelector('.winner').textContent = 'Sorry The Computer Wins!'
+    }
+    document.querySelector('.reset').style.display = 'flex';
 }
 
 function displayRound(playerChoice, computerChoice, winner) {
     document.querySelector('.playerChoice').textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
     document.querySelector('.computerChoice').textContent = `Computer Chose: ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
-
+    displayRoundWinner();
 };
+
+function displayRoundWinner(winner){
+    if(winner == 'Player') {
+        document.querySelector('.winner').textContent = 'You won the Round!';
+    } else if(winner == 'Computer') {
+        document.querySelector('.winner').textContent = 'Computer won the Round'
+    } else {
+        document.querySelector('.winner').textContent = 'TIE!'
+    }
+}
 
 function countWins () {
     let playerWins = winners.filter(item => item == 'Player').length;
