@@ -32,7 +32,11 @@ function playRound(playerChoice) {
     displayRound(playerChoice, computerChoice, winner);
 }
 
+function displayRound(playerChoice, computerChoice, winner) {
+    document.querySelector('.playerChoice').textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
+    document.querySelector('.computerChoice').textContent = `Computer Chose: ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
 
+};
 
 function countWins () {
     let playerWins = winners.filter(item => item == 'Player').length;
