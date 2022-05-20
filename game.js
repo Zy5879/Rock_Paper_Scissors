@@ -58,11 +58,11 @@ function displayRound(playerChoice, computerSelection, winner) {
 function displayRoundWinner(winner){
     if(winner == 'Player') {
         document.querySelector('.winner').textContent = 'You won the Round!';
-    } else if(winner == 'Computer') {
-        document.querySelector('.winner').textContent = 'Computer won the Round'
-    } else {
-        document.querySelector('.winner').textContent = 'TIE!'
-    }
+    } else if (winner == 'Computer') {
+        document.querySelector('.winner').textContent = 'Computer won the Round';
+    } //else {
+       // document.querySelector('.winner').textContent = 'The Round was a Tie';
+   // }
 }
 
 function countWins () {
@@ -71,6 +71,7 @@ function countWins () {
     let ties = winners.filter(item => item == 'Tie').length;
     document.querySelector('.playerScore').textContent = `Score: ${pWins}`;
     document.querySelector('.computerScore').textContent = `Score: ${cWins}`;
+    document.querySelector('.ties').textContent = `Ties: ${ties}`;
 }
 
 function computerChoice() {
