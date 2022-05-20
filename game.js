@@ -21,15 +21,15 @@ img.addEventListener('click', () => {
 }
 
 function playRound(playerChoice) {
-    let wins = checkWins()
+    let wins = checkWins();
     if(wins >= 5) {
         return;
     }
     const computerSelection = computerChoice();
-    const winner = checkWinner(playerChoice, computerChoice)
+    const winner = checkWinner(playerChoice, computerSelection);
     winners.push(winner);
     countWins();
-    displayRound(playerChoice, computerChoice, winner);
+    displayRound(playerChoice, computerSelection, winner);
     wins = checkWins();
     if(wins == 5){
         //display end results
@@ -39,8 +39,8 @@ function playRound(playerChoice) {
 }
 
 function displayEnd() {
-    let pWins = winners.filter(item => item == 'Player').length;
-    if(pWins == 5){
+    let playerWins = winners.filter(item => item == 'Player').length;
+    if(playerWins == 5) {
         document.querySelector('.winner').textContent = 'Congratulations You Win!';
     } else {
         document.querySelector('.winner').textContent = 'Sorry The Computer Wins!'
@@ -48,9 +48,10 @@ function displayEnd() {
     document.querySelector('.reset').style.display = 'flex';
 }
 
-function displayRound(playerChoice, computerChoice, winner) {
+function displayRound(playerChoice, computerSelection, winner) {
     document.querySelector('.playerChoice').textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
-    document.querySelector('.computerChoice').textContent = `Computer Chose: ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
+    document.querySelector('.computerChoice').textContent = `Computer Chose: ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`
+    document.querySelector('.winner').textContent = `Round Winner: ${winner}`;
     displayRoundWinner();
 };
 
@@ -65,11 +66,11 @@ function displayRoundWinner(winner){
 }
 
 function countWins () {
-    let playerWins = winners.filter(item => item == 'Player').length;
-    let computerWins = winners.filter(item => item == 'Computer' ).length;
+    let pWins = winners.filter(item => item == 'Player').length;
+    let cWins = winners.filter(item => item == 'Computer' ).length;
     let ties = winners.filter(item => item == 'Tie').length;
-    document.querySelector('.playerScore').textContent = `Score: ${playerWins}`;
-    document.querySelector('.computerScore').textContent = `Score: ${computerWins}`;
+    document.querySelector('.playerScore').textContent = `Score: ${pWins}`;
+    document.querySelector('.computerScore').textContent = `Score: ${cWins}`;
 }
 
 function computerChoice() {
@@ -77,9 +78,9 @@ function computerChoice() {
 }
 
 function checkWins() {
-    let playerWins = winners.filter(item => item == 'Player').length;
-    let computerWins = winners.filter(item => item == 'Computer' ).length;
-    return Math.max(playerWins, computerWins);
+    let pWins = winners.filter(item => item == 'Player').length;
+    let cWins = winners.filter(item => item == 'Computer' ).length;
+    return Math.max(pWins, cWins);
 }
 
 function checkWinner(choiceP, choiceC) {
@@ -97,11 +98,12 @@ function checkWinner(choiceP, choiceC) {
 }
 
 function logWins() {
-    let playerWins = winners.filter(item => item == 'Player').length;
-    let computerWins = winners.filter(item => item == 'Computer' ).length;
+    let pWins = winners.filter(item => item == 'Player').length;
+    let cWins = winners.filter(item => item == 'Computer' ).length;
     let ties = winners.filter(item => item == 'Tie').length;
 }
 
+game();
 
 /*function resetGame() {
     //reset game
