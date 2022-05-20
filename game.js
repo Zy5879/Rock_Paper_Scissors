@@ -3,9 +3,10 @@ const winners = [];
 
 function resetGame() {
     //reset game
+    window.location.reload();
      winner = []
-    document.querySelector('.playerScore').textContent = 'Score: 0';
-    document.querySelector('.computerScore').textContent = 'Score: 0';
+    document.querySelector('.playerScore').textContent = ' Player Score: 0';
+    document.querySelector('.computerScore').textContent = 'Computer Score: 0';
     document.querySelector('.ties').textContent = 'Ties: 0';
     document.querySelector('.winner').textContent = '';
     document.querySelector('.playerChoice').textContent = '';
@@ -115,9 +116,9 @@ game();
 
 
 
-
+//OLD CODE
 /*function resetGame() {
-    //reset game
+    reset game
 }
 
 function game() { 
