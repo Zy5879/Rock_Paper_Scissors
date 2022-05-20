@@ -3,6 +3,14 @@ const winners = [];
 
 function resetGame() {
     //reset game
+     winner = []
+    document.querySelector('.playerScore').textContent = 'Score: 0';
+    document.querySelector('.computerScore').textContent = 'Score: 0';
+    document.querySelector('.ties').textContent = 'Ties: 0';
+    document.querySelector('.winner').textContent = '';
+    document.querySelector('.playerChoice').textContent = '';
+    document.querySelector('.computerChoice').textContent = '';
+    document.querySelector('.reset').style.display = 'none';
 }
 
 function game() {
@@ -51,8 +59,7 @@ function displayEnd() {
 function displayRound(playerChoice, computerSelection, winner) {
     document.querySelector('.playerChoice').textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
     document.querySelector('.computerChoice').textContent = `Computer Chose: ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`
-    document.querySelector('.winner').textContent = `Round Winner: ${winner}`;
-    displayRoundWinner();
+    displayRoundWinner(winner);
 };
 
 function displayRoundWinner(winner){
@@ -60,9 +67,9 @@ function displayRoundWinner(winner){
         document.querySelector('.winner').textContent = 'You won the Round!';
     } else if (winner == 'Computer') {
         document.querySelector('.winner').textContent = 'Computer won the Round';
-    } //else {
-       // document.querySelector('.winner').textContent = 'The Round was a Tie';
-   // }
+    } else {
+       document.querySelector('.winner').textContent = 'The Round was a Tie';
+    }
 }
 
 function countWins () {
@@ -105,6 +112,9 @@ function logWins() {
 }
 
 game();
+
+
+
 
 /*function resetGame() {
     //reset game
